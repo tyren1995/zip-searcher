@@ -9,6 +9,7 @@ export default {
 </script>
 
 <template>
+  <h1>Zip Finder</h1>
   <form>
   <input v-model="zip" class="zip-searcher" />
   </form>
@@ -16,7 +17,6 @@ export default {
 
 <style>
 .zip-searcher {
-  color: red;
-  font-weight: bold;
+  width:80vw;
 }
 </style>
