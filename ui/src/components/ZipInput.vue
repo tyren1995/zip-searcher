@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <h1>Zip Finder</h1>
+  <h1>Zip Finder</h1><br/>
   <form>
   <input v-model="zip" class="zip-searcher" />
   </form>
