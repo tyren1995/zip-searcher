@@ -12,7 +12,7 @@ import { RouterLink, RouterView } from 'vue-router'
 #wrapper{
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 60vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
