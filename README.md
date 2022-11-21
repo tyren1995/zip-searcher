@@ -1,7 +1,7 @@
 # zip-searcher
 A basic Vue/Python application which accepts a user-input for zip code and returns the city and state via the USPS API.
 
-#Run Instructions
+# Run Instructions
 - Make sure Docker is running
 - Clone this repo and navigate to the folder on your machine
 - Run 'docker-compose build'
