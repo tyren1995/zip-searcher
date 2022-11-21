@@ -20,7 +20,6 @@ class Zip(BaseModel):
 
 @app.post("/find-zip")
 async def get_city_state(zip:Zip):
-
     url = "https://secure.shippingapis.com/ShippingAPI.dll?API=CityStateLookup"
     zip_dict = zip.dict()
     zip_value = zip_dict['zip']
