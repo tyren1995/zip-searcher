@@ -12,7 +12,7 @@ if(zip.value.length !== 5){
  return alert('Please enter a valid 5 digit zip code.')
 }
 else{
-return axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then((res)=>(
+return axios.post('http://localhost:5000/find-zip', {"zip" : zip.value}).then((res)=>(
       city.value = res.data['city'],
       state.value = res.data['state'],
       displayCityAndState.value = true

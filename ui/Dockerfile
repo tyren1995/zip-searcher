@@ -1,17 +1,23 @@
+# Choose the Image which has Node installed already
 FROM node:lts-alpine
 
-WORKDIR /ui
+# install simple http server for serving static content
+RUN npm install -g http-server
 
-ENV PATH /ui/node_modules/.bin:$PATH
+# make the 'app' folder the current working directory
+WORKDIR /app
 
-#RUN echo "installing vue"
-RUN npm install vue
+# copy both 'package.json' and 'package-lock.json' (if available)
+COPY package*.json ./
 
-COPY package.json .
-COPY package-lock.json .
-
-#RUN echo "installing dependencies for vue app"
+# install project dependencies
 RUN npm install
 
-#RUN echo "Starting vue app"
-CMD ["npm", "run", "dev"]
+# copy project files and folders to the current working directory (i.e. 'app' folder)
+COPY . .
+
+# build app for production with minification
+RUN npm run build
+
+EXPOSE 8080
+CMD [ "http-server", "dist" ]
