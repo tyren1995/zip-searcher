@@ -25,17 +25,45 @@ return axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then(
 </script>
 
 <template>
+  <div id="container">
   <h1>Zip Finder</h1><br/>
   <div>
   <input v-model="zip" id="zip-searcher" />
-  <button @click="search">Search</button>
+  <button id="search-button" @click="search">Search</button>
   </div>
-  <p  v-if="displayCityAndState"> The city and state of the entered zip is {{city}},{{state}} </p>
+  <h1 id="response-message" v-if="displayCityAndState"> The city and state of the entered zip is <br/><span id="location">{{city}},{{state}}</span> </h1>
+  </div>
 </template>
 
 <style>
+h1, button{
+  color:white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #F36B24;
+}
+#container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #6EC1E4;
+  padding:70px;
+  border-radius: 3px;
+  border:3px solid grey;
+}
+#search-button {
+  margin-left: 5px;
+  cursor: pointer;
+}
 #zip-searcher {
-  margin-top: 10vh;
-  width:80vw;
+  margin-top: 5vh;
+  width:60vw;
+}
+#response-message {
+  text-align:center;
+}
+#location {
+  border-bottom: 3px solid grey;
 }
 </style>
