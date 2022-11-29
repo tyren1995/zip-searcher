@@ -11,10 +11,29 @@
   </q-input>
   </q-card-section>
   <br/>
+  <q-inner-loading :showing="visible">
+      <q-spinner-gears size="100px" color="primary" />
+  </q-inner-loading>
   <h1 id="response-message" v-if="displayCityAndState"> 
     The city and state of the entered zip is <br/><span id="location">{{city}},{{state}}</span> 
   </h1>
 </q-card>
+
+<q-dialog v-model="alert">
+      <q-card>
+        <q-card-section>
+          <div class="text-h6">Error</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Sorry, there has been an error while attempting to contact the server.
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
 </template>
 
 <script setup>
@@ -22,20 +41,37 @@ import axios from 'axios'
 import { ref } from 'vue'
 
 const zip = ref('');
-let city= ref('');
-let state= ref('');
-let displayCityAndState = ref(false);
+const city= ref('');
+const state= ref('');
+const displayCityAndState = ref(false);
+const visible = ref(false);
+
+const showLoadingCircle = () => {
+        visible.value = true
+      };
+const hideLoadingCircle = () => {
+        visible.value = false
+      };
 
 const queryUSPSAPI = () => {
 if(zip.value.length !== 5){
  return alert('Please enter a valid 5 digit zip code.')
 }
 else{
-return axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then((res)=>(
+showLoadingCircle();
+ try{
+  axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then((res)=>{
+      hideLoadingCircle();
+      return(
       city.value = res.data['city'],
       state.value = res.data['state'],
       displayCityAndState.value = true
-  ))
+      );
+})
+ }catch(error){
+    return "alert=true"
+ }
+
 }
 };
 </script>
