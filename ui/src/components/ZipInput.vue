@@ -1,12 +1,20 @@
 <template>
-  <div id="container">
-  <h1>Zip Finder</h1><br/>
-  <input v-model="zip" placeholder="Enter Zip Code Here..." id="zip-input" /><br/>
-  <button id="search-button" @click="queryUSPSAPI">Search</button>
+  <q-card id="container">
+    <q-card-section>
+    <q-chip id="logo" size="80px" color="orange" text-color="white"><h1>Zip Finder</h1></q-chip><br/>
+    </q-card-section>
+    <q-card-section>
+  <q-input outlined v-model="zip" id="input" placeholder="Enter Zip Code Here..."  >
+  <template v-slot:append>
+      <q-icon id="search" @click="queryUSPSAPI" name="search" />
+  </template>
+  </q-input>
+  </q-card-section>
+  <br/>
   <h1 id="response-message" v-if="displayCityAndState"> 
     The city and state of the entered zip is <br/><span id="location">{{city}},{{state}}</span> 
   </h1>
-  </div>
+</q-card>
 </template>
 
 <script setup>
@@ -33,42 +41,17 @@ return axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then((r
 </script>
 
 <style>
-h1{
-  color:white;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #F36B24;
-}
-input:focus {
-    outline: none !important;
-    border:1px solid grey;
-  }
 #container{
-  display: flex;
-  width:80vw;
-  height:40vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #6EC1E4;
-  padding:30px;
-  border-radius: 3px;
-  border:2px solid grey;
+  text-align: center;
 }
-#search-button {
-  background-color: #F36B24;
-  color: white;
-  border-radius: 3px;
-  border: 1px solid black;
-  margin-left: 5px;
-  width:15vw;
-  height:30px;
-  cursor: pointer;
+#input{
+  width:20vw;
 }
-#zip-input {
-  text-align: center; 
-  border-radius: 3px;
-  width:30vw;
-  height:25px;
+#logo{
+  border-radius: 80px;
+}
+#search{
+  cursor:pointer
 }
 #response-message {
   text-align:center;

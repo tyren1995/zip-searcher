@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout >
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="bg-cyan text-white">
         <q-toolbar-title>
           Zip Searcher
         </q-toolbar-title>
