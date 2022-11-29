@@ -19,7 +19,7 @@
   </h1>
 </q-card>
 
-<q-dialog v-model="alert">
+<q-dialog v-if="displayErrorAlert" v-model="alert">
       <q-card>
         <q-card-section>
           <div class="text-h6">Error</div>
@@ -44,6 +44,7 @@ const zip = ref('');
 const city= ref('');
 const state= ref('');
 const displayCityAndState = ref(false);
+const displayErrorAlert = ref(true);
 const visible = ref(false);
 
 const showLoadingCircle = () => {
@@ -69,7 +70,7 @@ showLoadingCircle();
       );
 })
  }catch(error){
-    return "alert=true"
+    return displayErrorAlert.value = true
  }
 
 }
