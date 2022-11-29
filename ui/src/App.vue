@@ -1,20 +1,11 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
-  <div id="wrapper">
-    <RouterView />
-  </div>
+  <router-view />
 </template>
 
-<style >
-#wrapper{
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  justify-content: center;
-  align-items: center;
-} 
-</style>
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'App'
+})
+</script>

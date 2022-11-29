@@ -1,3 +1,14 @@
+<template>
+  <div id="container">
+  <h1>Zip Finder</h1><br/>
+  <input v-model="zip" placeholder="Enter Zip Code Here..." id="zip-input" /><br/>
+  <button id="search-button" @click="queryUSPSAPI">Search</button>
+  <h1 id="response-message" v-if="displayCityAndState"> 
+    The city and state of the entered zip is <br/><span id="location">{{city}},{{state}}</span> 
+  </h1>
+  </div>
+</template>
+
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
@@ -20,17 +31,6 @@ return axios.post('http://127.0.0.1:8000/find-zip', {"zip" : zip.value}).then((r
 }
 };
 </script>
-
-<template>
-  <div id="container">
-  <h1>Zip Finder</h1><br/>
-  <input v-model="zip" placeholder="Enter Zip Code Here..." id="zip-input" /><br/>
-  <button id="search-button" @click="queryUSPSAPI">Search</button>
-  <h1 id="response-message" v-if="displayCityAndState"> 
-    The city and state of the entered zip is <br/><span id="location">{{city}},{{state}}</span> 
-  </h1>
-  </div>
-</template>
 
 <style>
 h1{
