@@ -1,5 +1,6 @@
 # zip-searcher
 A basic Vue Quasar/Python FastAPI application which accepts a user-input for zip code and returns the city and state via the USPS API.
+This project would make more sense without the fastapi portion, requests could be made only from the front-end. However, this provides a good learning experience for the basics of FastAPI
 
 # Run Instructions
 - Clone this repo and navigate to the root folder on your machine, run ```npm i -g @quasar/cli```
